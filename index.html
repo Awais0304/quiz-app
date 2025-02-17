@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="quiz-container">
+        <div id="name-screen">
+            <h1>Welcome to the Quiz</h1>
+            <input type="text" id="username" placeholder="Enter your name">
+            <button id="proceed-btn">Proceed</button>
+        </div>
+
+        <div id="start-screen" class="hidden">
+            <h1>Welcome, <span id="display-name"></span></h1>
+            <button id="start-btn">Start Quiz</button>
+        </div>
+
+        <div id="quiz-screen" class="hidden">
+            <div class="timer">Time Left: <span id="timer">2:00</span></div>
+            <div id="question-container"></div>
+            <button id="next-btn" class="hidden">Next</button>
+        </div>
+
+        <div id="result-screen" class="hidden">
+            <h2>Quiz Result</h2>
+            <table>
+                <tr><td>Total Questions:</td><td id="total-questions"></td></tr>
+                <tr><td>Attempted:</td><td id="attempted"></td></tr>
+                <tr><td>Correct:</td><td id="correct"></td></tr>
+                <tr><td>Wrong:</td><td id="wrong"></td></tr>
+                <tr><td>Percentage:</td><td id="percentage"></td></tr>
+            </table>
+            <button id="try-again-btn">Try Again</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
