@@ -73,16 +73,12 @@ input {
 }
 
 .options button:hover {
-    background: #555;
+    background: #c4b52f;
 }
 
-.correct {
-    background: green !important;
-}
 
-.wrong {
-    background: red !important;
-}
+
+
 
 table {
     width: 100%;

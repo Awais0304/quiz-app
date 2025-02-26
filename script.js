@@ -68,24 +68,27 @@ function loadQuestion() {
     questionContainer.innerHTML = `
         <div class="question">${questionData.question}</div>
         <div class="options">
-            ${questionData.options.map((opt, index) => `<button onclick="selectAnswer(${index})">${opt}</button>`).join("")}
+            ${questionData.options.map((opt, index) => `<button class="option-btn" onclick="selectAnswer(this, ${index})">${opt}</button>`).join("")}
         </div>
     `;
 }
 
-function selectAnswer(selectedIndex) {
+function selectAnswer(button, selectedIndex) {
     attemptedQuestions++;
     let questionData = questions[currentQuestionIndex];
-    let buttons = document.querySelectorAll(".options button");
-
+    let buttons = document.querySelectorAll(".option-btn");
+    
+    buttons.forEach(btn => btn.classList.remove("selected"));
+    button.classList.add("selected");
+    button.classList.add("brown");
+    
     if (selectedIndex === questionData.answer) {
+        button.classList.add("correct");
         correctAnswers++;
-        buttons[selectedIndex].classList.add("correct");
     } else {
-        buttons[selectedIndex].classList.add("wrong");
-        buttons[questionData.answer].classList.add("correct");
+        button.classList.add("wrong");
     }
-
+    
     buttons.forEach(btn => btn.disabled = true);
     nextBtn.classList.remove("hidden");
 }
@@ -105,12 +108,17 @@ function showResult() {
     resultScreen.classList.remove("hidden");
 
     let percentage = ((correctAnswers / questions.length) * 100).toFixed(2);
-
+    let resultMessage = percentage > 50 ? "Good Result!" : "Bad Luck! Try Again";
+    
     document.getElementById("total-questions").innerText = questions.length;
     document.getElementById("attempted").innerText = attemptedQuestions;
     document.getElementById("correct").innerText = correctAnswers;
     document.getElementById("wrong").innerText = attemptedQuestions - correctAnswers;
     document.getElementById("percentage").innerText = percentage + "%";
+    
+    let resultHeading = document.createElement("h3");
+    resultHeading.innerText = resultMessage;
+    resultScreen.appendChild(resultHeading);
 }
 
 function restartQuiz() {
